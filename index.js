@@ -8,7 +8,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
 app.use("/", calificacionesRouter);
-//app.use("/", new Router().start());
 
 app.listen(PORT, ()=> console.log(`Server Listening on: ${PORT}`));
 app.on("error", (error)=> console.log(`ERROR: ${error}`));

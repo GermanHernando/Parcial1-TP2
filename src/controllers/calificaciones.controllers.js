@@ -6,13 +6,20 @@ const calificaciones = await service.getCalificaciones()
 res.send(calificaciones)
 }
 
-const postCalificaciones = async (req,res) => {
-    const nuevaCalificacion = req.body
-    const calificaciones = await service.postCalificaciones()
+const getCalificacionesById = async (req, res) =>{
+    const {id} = req.body
+    const calificacionById = await service.getCalificacionById(id)
+    res.send(calificacionById);
+}
+
+const agregarCalificacion = async (req, res) => {
+    const calificacionNueva = req.body
+    const calificaciones = await service.agregarCalificacion(calificacionNueva)
     res.send(calificaciones)
-    }
+}
 
 export default{
     getCalificaciones,
-    postCalificaciones
+    getCalificacionesById,
+    agregarCalificacion
 }

@@ -1,68 +1,44 @@
+ 
+ 
  const calificaciones = [
     {
+        id: 1, 
         nombre: "Fulano",
-        nota: 6,
-        curso: "1A"
+        nota: 6
     },
     {
+         id: 2,
         nombre: "Mengano",
-        nota: 8,
-        curso: "2B"
+        nota: 8
     },
     {
+         id: 3,
         nombre: "Saraza",
-        nota: 9,
-        curso: "3C"
-    },
-    {
-        nombre: "Homero",
-        nota: 8,
-        curso: "1A"
+        nota: 9
     }
  ]
 
  const getCalificaciones = () =>{
-    return this.calificaciones
+    return calificaciones
  }
 
- const postCalificaciones = async (data) =>{
-    const nuevaCalificacion = await calificaciones.push(data)
-    console.log('nuevaCalificacion:', nuevaCalificacion)
-    return data
- }
+ const getCalificacionById = async (id) => {
+   const calificacion = calificaciones.find((element) => element.id == id);
+   let mensaje = calificacion!=null? `Hola ${calificacion.nombre}!, Tu nota es ${calificacion.nota}`:"Calificacion inexistente porque no existe Id."
+   return mensaje
+}
 
- const promedioNotasIngresadas = () =>{
-    let acum = 0;
-    let promedio = 0;
-    calificaciones.forEach(alumno => {
-        acum += alumno.nota;
-        contador++;
-    });
-    promedio = acum/calificaciones.length;
-    return promedio
- }
-
- const promedioNotasPorCurso = () =>{
-    const promedioCursos = []
-    for (let index = 0; index < calificaciones.length; index++) {
-        const cursoNota = calificaciones[index].reduce(calificaciones.nota);
-        promedioCursos.push(cursoNota)
-    }
-    return promedioCursos
- }
-
- const cantNotasIngresadas = () =>{
-    return calificaciones.length
- }
-
- 
-
+const agregarCalificacion = (data) =>{
+   data.id = calificaciones.length + 1;
+   calificaciones.push(data)
+   return data
+}
 
 
  export default{
     getCalificaciones,
-    postCalificaciones,
-    promedioNotasIngresadas
+    getCalificacionById,
+    agregarCalificacion
  }
     
  
